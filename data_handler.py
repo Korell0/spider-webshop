@@ -3,6 +3,14 @@ import bcrypt
 
 
 @database_common.connection_handler
+def insert_new_spiders(cursor,spider_name,world,price,info):
+    cursor.execute("""
+                        INSERT INTO spiders (spider_name, world, price, information) 
+                        VALUES (%(spider_name)s,%(world)s,%(price)s,%(info)s)
+        """, {"spider_name": spider_name, "world": world, "price": price, "info": info})
+
+
+@database_common.connection_handler
 def get_spider_data(cursor):
     cursor.execute("""
                     SELECT spiders.spider_name,spiders.world,spiders.price,spiders.information FROM spiders

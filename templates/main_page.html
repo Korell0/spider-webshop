@@ -23,6 +23,10 @@
                 <button id="register" type="submit" formaction="/registration">REGISTER</button>
                 <p>{{ error }}</p>
             </form>
+            {% elif username == "Admin" %}
+                <form action="/new-spider">
+                <button type="submit">Add new spider</button>
+                </form>
          {% else %}
                 <form  class="form-inline" action="/logout" id="logged_in">
                     <p>{{username}}</p>
@@ -30,15 +34,22 @@
                 </form>
             {%endif%}
     </nav>
+
 <div class="card">
-{% for spider in all_spiders %}
-<div class="spider-card">
-    <p>{{ spider.spider_name }}</p>
-    <p>{{ spider.world }}</p>
-    <p>{{ spider.price }}</p>
-    <p>{{ spider.information }}</p>
-</div>
+<section>
+{% for spider_row in all_spiders | batch(3, '&nbsp;') %}
+    <div class="row">
+    {% for spider in spider_row %}
+        <div class="spider-card">
+        <p>Name : {{ spider.spider_name }}</p>
+        <p>World : {{ spider.world }}</p>
+        <p>Price(HUF) : {{ spider.price }}</p>
+        <p>Info : {{ spider.information }}</p>
+    </div>
 {% endfor %}
+    </div>
+{% endfor %}
+</section>
 </div>
 </body>
 </html>

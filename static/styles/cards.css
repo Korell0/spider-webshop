@@ -1,8 +1,8 @@
 .card {
     position: relative;
 
-    display: flex;
-
+    flex-grow: 1;
+    margin-top: 20vh;
     margin-bottom: 20px;
     padding: 24px;
 
@@ -17,3 +17,5 @@
         margin: 2vh;
         width: 50vh;
 }
+
+.row {display: flex}
